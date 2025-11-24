@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B.O.S.S. Manager - Em Breve</title>
+    <meta name="description" content="O jogo de gerenciamento de futebol mobile definitivo. Construa sua história.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-color: #00ff88; /* Verde Neon Futebol */
+            --bg-color: #0f172a; /* Azul Escuro Profundo */
+            --card-bg: #1e293b;
+            --text-color: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            background-image: radial-gradient(circle at top, #1e293b 0%, #0f172a 100%);
+            color: var(--text-color);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        /* Efeito de fundo (linhas de campo sutis) */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: repeating-linear-gradient(45deg, #ffffff05 0px, #ffffff05 1px, transparent 1px, transparent 20px);
+            z-index: -1;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 600px;
+            width: 100%;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .logo-container {
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            width: 180px;
+            height: 180px;
+            object-fit: contain;
+            border-radius: 50%; /* Se o logo for quadrado, isso deixa redondo. Se já for png sem fundo, pode tirar */
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            color: #94a3b8;
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+
+        .status-badge {
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--primary-color);
+            padding: 8px 16px;
+            border-radius: 50px;
+            border: 1px solid var(--primary-color);
+            font-size: 0.9rem;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+
+        /* Botões de Redes Sociais */
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            background: var(--card-bg);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .social-btn i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .social-btn:hover {
+            background: var(--primary-color);
+            color: #000;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 255, 136, 0.2);
+        }
+
+        /* Cores específicas no Hover (Opcional - descomente se quiser cores originais) */
+        /* .discord:hover { background: #5865F2; color: white; box-shadow: 0 10px 20px rgba(88, 101, 242, 0.3); }
+        .instagram:hover { background: #E1306C; color: white; box-shadow: 0 10px 20px rgba(225, 48, 108, 0.3); }
+        */
+
+        footer {
+            margin-top: 50px;
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 1.8rem; }
+            .logo { width: 140px; height: 140px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="logo-container">
+            <img src="logo.png" alt="B.O.S.S. Manager Logo" class="logo">
+        </div>
+
+        <div class="status-badge">
+            🚧 EM DESENVOLVIMENTO
+        </div>
+
+        <h1>B.O.S.S. Manager</h1>
+        <p class="tagline">Build Own Soccer Story<br>O gerenciamento de futebol mobile definitivo.</p>
+
+        <div class="social-links">
+            <a href="https://discord.gg/F4atZvP8zJ" target="_blank" class="social-btn discord">
+                <i class="fa-brands fa-discord"></i> Entrar no Discord
+            </a>
+
+            <a href="https://instagram.com/playbossmanager" target="_blank" class="social-btn instagram">
+                <i class="fa-brands fa-instagram"></i> Seguir no Instagram
+            </a>
+
+            <a href="https://www.threads.net/@playbossmanager" target="_blank" class="social-btn threads">
+                <i class="fa-brands fa-threads"></i> Seguir no Threads
+            </a>
+
+            <a href="https://twitter.com/playbossmanager" target="_blank" class="social-btn twitter">
+                <i class="fa-brands fa-x-twitter"></i> Seguir no X
+            </a>
+            
+            <a href="https://facebook.com/playbossmanager" target="_blank" class="social-btn facebook">
+                <i class="fa-brands fa-facebook"></i> Página no Facebook
+            </a>
+
+            <a href="https://tiktok.com/@playbossmanager" target="_blank" class="social-btn tiktok">
+                <i class="fa-brands fa-tiktok"></i> Seguir no TikTok
+            </a>
+
+            <a href="https://twitch.tv/playbossmanager" target="_blank" class="social-btn twitch">
+                <i class="fa-brands fa-twitch"></i> Canal na Twitch
+            </a>
+
+            <a href="https://reddit.com/u/playbossmanager" target="_blank" class="social-btn reddit">
+                <i class="fa-brands fa-reddit"></i> Perfil no Reddit
+            </a>
+        </div>
+
+        <footer>
+            &copy; 2025 B.O.S.S. Manager Studio. Todos os direitos reservados.
+        </footer>
+    </div>
+
+</body>
+</html>
