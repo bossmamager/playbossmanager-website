@@ -18,6 +18,7 @@
             --bg-color: #0f172a; /* Azul Escuro Profundo */
             --card-bg: #1e293b;
             --text-color: #ffffff;
+            --hover-bg: #334155;
         }
 
         * {
@@ -31,41 +32,44 @@
             background-color: var(--bg-color);
             background-image: radial-gradient(circle at top, #1e293b 0%, #0f172a 100%);
             color: var(--text-color);
-            height: 100vh;
+            min-height: 100vh; /* Permite crescer se precisar */
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            overflow: hidden;
+            padding: 20px;
+            /* overflow: hidden; REMOVIDO para permitir scroll em telas pequenas */
         }
 
-        /* Efeito de fundo (linhas de campo sutis) */
+        /* Efeito de fundo */
         body::before {
             content: "";
-            position: absolute;
+            position: fixed; /* Fixado para não rolar junto */
             top: 0; left: 0; width: 100%; height: 100%;
             background: repeating-linear-gradient(45deg, #ffffff05 0px, #ffffff05 1px, transparent 1px, transparent 20px);
             z-index: -1;
         }
 
         .container {
-            padding: 20px;
-            max-width: 600px;
+            max-width: 800px;
             width: 100%;
             animation: fadeIn 1.5s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .logo-container {
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
 
         .logo {
             width: 180px;
             height: 180px;
             object-fit: contain;
-            border-radius: 50%; /* Se o logo for quadrado, isso deixa redondo. Se já for png sem fundo, pode tirar */
-            box-shadow: 0 0 30px rgba(0, 255, 136, 0.2);
+            /* border-radius: 50%; REMOVIDO pois sua imagem já é redonda/sem fundo */
+            filter: drop-shadow(0 0 20px rgba(0, 255, 136, 0.3));
             transition: transform 0.3s ease;
         }
 
@@ -86,6 +90,8 @@
             color: #94a3b8;
             margin-bottom: 40px;
             font-weight: 400;
+            max-width: 600px;
+            line-height: 1.6;
         }
 
         .status-badge {
@@ -94,53 +100,73 @@
             padding: 8px 16px;
             border-radius: 50px;
             border: 1px solid var(--primary-color);
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             font-weight: 700;
+            letter-spacing: 1px;
             display: inline-block;
             margin-bottom: 30px;
         }
 
-        /* Botões de Redes Sociais */
+        /* --- NOVOS ÍCONES SOCIAIS --- */
         .social-links {
             display: flex;
-            flex-direction: column;
-            gap: 15px;
-            width: 100%;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px; /* Espaço entre os ícones */
+            margin-top: 10px;
         }
 
         .social-btn {
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 15px;
+            width: 60px;
+            height: 60px;
             background: var(--card-bg);
-            color: white;
+            color: #94a3b8;
             text-decoration: none;
-            border-radius: 12px;
-            font-weight: 700;
-            transition: all 0.3s ease;
+            border-radius: 50%; /* Deixa redondo */
+            font-size: 1.5rem;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 1px solid rgba(255,255,255,0.05);
+            position: relative;
         }
 
-        .social-btn i {
-            margin-right: 10px;
-            font-size: 1.2rem;
-        }
-
+        /* Hover Geral */
         .social-btn:hover {
             background: var(--primary-color);
-            color: #000;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 255, 136, 0.2);
+            color: #0f172a;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 255, 136, 0.3);
         }
 
-        /* Cores específicas no Hover (Opcional - descomente se quiser cores originais) */
-        /* .discord:hover { background: #5865F2; color: white; box-shadow: 0 10px 20px rgba(88, 101, 242, 0.3); }
-        .instagram:hover { background: #E1306C; color: white; box-shadow: 0 10px 20px rgba(225, 48, 108, 0.3); }
-        */
+        /* Tooltip (Dica ao passar o mouse) */
+        .social-btn::after {
+            content: attr(data-tooltip); /* Pega o texto do atributo data-tooltip */
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #000;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .social-btn:hover::after {
+            opacity: 1;
+            visibility: visible;
+        }
 
         footer {
-            margin-top: 50px;
+            margin-top: 60px;
             font-size: 0.8rem;
             color: #64748b;
         }
@@ -153,6 +179,7 @@
         @media (max-width: 480px) {
             h1 { font-size: 1.8rem; }
             .logo { width: 140px; height: 140px; }
+            .social-btn { width: 50px; height: 50px; font-size: 1.3rem; }
         }
     </style>
 </head>
@@ -171,36 +198,36 @@
         <p class="tagline">Build Own Soccer Story<br>O gerenciamento de futebol mobile definitivo.</p>
 
         <div class="social-links">
-            <a href="https://discord.gg/F4atZvP8zJ" target="_blank" class="social-btn discord">
-                <i class="fa-brands fa-discord"></i> Entrar no Discord
+            <a href="https://discord.gg/F4atZvP8zJ" target="_blank" class="social-btn" data-tooltip="Comunidade no Discord">
+                <i class="fa-brands fa-discord"></i>
             </a>
 
-            <a href="https://instagram.com/playbossmanager" target="_blank" class="social-btn instagram">
-                <i class="fa-brands fa-instagram"></i> Seguir no Instagram
+            <a href="https://instagram.com/playbossmanager" target="_blank" class="social-btn" data-tooltip="Instagram">
+                <i class="fa-brands fa-instagram"></i>
             </a>
 
-            <a href="https://www.threads.net/@playbossmanager" target="_blank" class="social-btn threads">
-                <i class="fa-brands fa-threads"></i> Seguir no Threads
+            <a href="https://www.threads.net/@playbossmanager" target="_blank" class="social-btn" data-tooltip="Threads">
+                <i class="fa-brands fa-threads"></i>
             </a>
 
-            <a href="https://twitter.com/playbossmanager" target="_blank" class="social-btn twitter">
-                <i class="fa-brands fa-x-twitter"></i> Seguir no X
+            <a href="https://twitter.com/playbossmanager" target="_blank" class="social-btn" data-tooltip="X / Twitter">
+                <i class="fa-brands fa-x-twitter"></i>
             </a>
             
-            <a href="https://facebook.com/playbossmanager" target="_blank" class="social-btn facebook">
-                <i class="fa-brands fa-facebook"></i> Página no Facebook
+            <a href="https://facebook.com/playbossmanager" target="_blank" class="social-btn" data-tooltip="Facebook">
+                <i class="fa-brands fa-facebook"></i>
             </a>
 
-            <a href="https://tiktok.com/@playbossmanager" target="_blank" class="social-btn tiktok">
-                <i class="fa-brands fa-tiktok"></i> Seguir no TikTok
+            <a href="https://tiktok.com/@playbossmanager" target="_blank" class="social-btn" data-tooltip="TikTok">
+                <i class="fa-brands fa-tiktok"></i>
             </a>
 
-            <a href="https://twitch.tv/playbossmanager" target="_blank" class="social-btn twitch">
-                <i class="fa-brands fa-twitch"></i> Canal na Twitch
+            <a href="https://twitch.tv/playbossmanager" target="_blank" class="social-btn" data-tooltip="Twitch">
+                <i class="fa-brands fa-twitch"></i>
             </a>
 
-            <a href="https://reddit.com/u/playbossmanager" target="_blank" class="social-btn reddit">
-                <i class="fa-brands fa-reddit"></i> Perfil no Reddit
+            <a href="https://reddit.com/u/playbossmanager" target="_blank" class="social-btn" data-tooltip="Reddit">
+                <i class="fa-brands fa-reddit"></i>
             </a>
         </div>
 
